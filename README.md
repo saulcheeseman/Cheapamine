@@ -2,7 +2,7 @@
 
 # Cheapamine (Dopamine, but for iPhone's with cheap aftermarket screens in mind)
 
-## As of now when you press jailbreak, your screen will go black, however, you will be able to close the app, from then you will swipe Cheapamine away, open it and respring, if Sileo/Zebra doesn't appear, go into settings and press refresh Jailbreak apps.
+## Sometimes when you jailbreak, Sileo will not appear, to fix this, you have to open settings in Cheapamine and press Refresh Jailbreak Apps.
 
 ### If anyone knows how to fix this issue, please let me know.
 
