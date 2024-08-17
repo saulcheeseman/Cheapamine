@@ -1,4 +1,4 @@
-"Credits_Made_By" = "by opa334, ElleKit by évelyne";
+"Credits_Made_By" = "by opa334 and saulcheeseman, ElleKit by évelyne";
 
 // Log
 "Status_Title_Jailbreaking" = "Jailbreaking";
@@ -12,7 +12,7 @@
 // Action Menu
 "Menu_Settings_Title" = "Settings";
 "Menu_Restart_SpringBoard_Title" = "Restart SpringBoard";
-"Menu_Reboot_Userspace_Title" = "Reboot Userspace";
+"Menu_Reboot_Userspace_Title" = "Semi Restart";
 "Menu_Credits_Title" = "Credits";
 
 // Updating
@@ -103,7 +103,7 @@
 "Elevating Privileges" = "Elevating Privileges";
 "Cleaning Up Exploits" = "Cleaning Up Exploits";
 "Building Phys R/W Primitive" = "Building Phys R/W Primitive";
-"Rebooting Userspace" = "Rebooting Userspace";
+"Rebooting Userspace" = "Rebooting SpringBoard";
 "Patchfinding" = "Patchfinding";
 "Exploiting Kernel (%@)" = "Exploiting Kernel (%@)";
 "Bypassing PAC (%@)" = "Bypassing PAC (%@)";

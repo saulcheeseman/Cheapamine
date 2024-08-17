@@ -40,8 +40,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)runUnsandboxed:(void (^)(void))unsandboxBlock;
 - (void)runAsRoot:(void (^)(void))rootBlock;
 
+- (void)semiReboot;
 - (void)respring;
-- (void)rebootUserspace;
 - (void)refreshJailbreakApps;
 - (void)reboot;
 - (void)changeMobilePassword:(NSString *)newPassword;

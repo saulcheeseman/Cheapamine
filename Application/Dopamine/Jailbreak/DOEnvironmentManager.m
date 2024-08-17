@@ -313,26 +313,16 @@ int reboot3(uint64_t flags, ...);
     }];
 }
 
-- (void)rebootUserspace
+- (void)semiReboot
 {
     [self runAsRoot:^{
-        __block int pid = 0;
-        __block int r = 0;
         [self runUnsandboxed:^{
-            r = exec_cmd_suspended(&pid, JBROOT_PATH("/basebin/jbctl"), "reboot_userspace", NULL);
-            if (r == 0) {
-                // the original plan was to have the process continue outside of this block
-                // unfortunately sandbox blocks kill aswell, so it's a bit racy but works
-
-                // we assume we leave this unsandbox block before the userspace reboot starts
-                // to avoid leaking the label, this seems to work in practice
-                // and even if it doesn't work, leaking the label is no big deal
-                kill(pid, SIGCONT);
-            }
+            exec_cmd(JBROOT_PATH("killall -9 backboardd"), NULL);
+            exec_cmd(JBROOT_PATH("killall -9 mediaserverd"), NULL);
+            exec_cmd(JBROOT_PATH("killall -9 installd"), NULL);
+            exec_cmd(JBROOT_PATH("killall -9 userd"), NULL);
+            exec_cmd(JBROOT_PATH("killall -9 networkd"), NULL);
         }];
-        if (r == 0) {
-            cmd_wait_for_exit(pid);
-        }
     }];
 }
 
@@ -385,7 +375,7 @@ int reboot3(uint64_t flags, ...);
     NSString *newBasebinTarPath = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"basebin.tar"];
     int result = jbclient_platform_stage_jailbreak_update(newBasebinTarPath.fileSystemRepresentation);
     if (result == 0) {
-        [self rebootUserspace];
+        [self respring];
         return nil;
     }
     return [NSError errorWithDomain:@"Dopamine" code:result userInfo:nil];

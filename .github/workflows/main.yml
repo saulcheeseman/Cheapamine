@@ -78,6 +78,7 @@ jobs:
         run: |
             set -x
             cd Application/Dopamine/Resources
+            chmod +x download_bootstraps.sh
             ./download_bootstraps.sh
 
       - name: Build
