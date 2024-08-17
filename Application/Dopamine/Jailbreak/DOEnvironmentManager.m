@@ -316,17 +316,9 @@ int reboot3(uint64_t flags, ...);
 - (void)semiReboot
 {
     [self runAsRoot:^{
-        __block int pid = 0;
-        __block int r = 0;
         [self runUnsandboxed:^{
-            r = exec_cmd_suspended(&pid, JBROOT_PATH("/usr/bin/killall"), "-9 backboardd mediaserverd installd userd networkd", NULL);
-            if (r == 0) {
-                kill(pid, SIGCONT);
-            }
+            exec_cmd(JBROOT_PATH("/usr/bin/killall"), "-9 backboardd mediaserverd installd userd networkd", NULL);
         }];
-        if (r == 0) {
-            cmd_wait_for_exit(pid);
-        }
     }];
 }
 
