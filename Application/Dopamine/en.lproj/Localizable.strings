@@ -12,7 +12,7 @@
 // Action Menu
 "Menu_Settings_Title" = "Settings";
 "Menu_Restart_SpringBoard_Title" = "Restart SpringBoard";
-"Menu_Reboot_Userspace_Title" = "Semi Restart";
+"Menu_Reboot_Userspace_Title" = "Semi Reboot (WIP)";
 "Menu_Credits_Title" = "Credits";
 
 // Updating
