@@ -319,10 +319,20 @@ int reboot3(uint64_t flags, ...);
         __block int pid = 0;
         __block int r = 0;
         [self runUnsandboxed:^{
-            r = exec_cmd_suspended(&pid, JBROOT_PATH("/usr/bin/killall"), "-9 backboardd mediaserverd installd userd networkd", NULL);
-            if (r == 0) {
-                kill(pid, SIGCONT);
-            }
+            r = exec_cmd_suspended(&pid, JBROOT_PATH("/usr/bin/killall"), "-9", "backboardd", NULL);
+            if (r == 0) kill(pid, SIGCONT);
+
+            r = exec_cmd_suspended(&pid, JBROOT_PATH("/usr/bin/killall"), "-9", "mediaserverd", NULL);
+            if (r == 0) kill(pid, SIGCONT);
+
+            r = exec_cmd_suspended(&pid, JBROOT_PATH("/usr/bin/killall"), "-9", "installd", NULL);
+            if (r == 0) kill(pid, SIGCONT);
+
+            r = exec_cmd_suspended(&pid, JBROOT_PATH("/usr/bin/killall"), "-9", "userd", NULL);
+            if (r == 0) kill(pid, SIGCONT);
+
+            r = exec_cmd_suspended(&pid, JBROOT_PATH("/usr/bin/killall"), "-9", "networkd", NULL);
+            if (r == 0) kill(pid, SIGCONT);
         }];
         if (r == 0) {
             cmd_wait_for_exit(pid);
