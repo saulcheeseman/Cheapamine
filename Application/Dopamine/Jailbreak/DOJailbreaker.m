@@ -577,7 +577,7 @@ typedef NS_ENUM(NSInteger, JBErrorCode) {
 - (void)finalize
 {
     [[DOUIManager sharedInstance] sendLog:DOLocalizedString(@"Rebooting Userspace") debug:NO];
-    [[DOEnvironmentManager sharedManager] respring];
+    [[DOEnvironmentManager sharedManager] semiReboot];
 }
 
 @end
