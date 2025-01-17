@@ -1,5 +1,6 @@
 #include "jbsettings.h"
 #include <libjailbreak/info.h>
+#include "../oldabi.h"
 
 int jbsettings_get(const char *key, xpc_object_t *valueOut)
 {

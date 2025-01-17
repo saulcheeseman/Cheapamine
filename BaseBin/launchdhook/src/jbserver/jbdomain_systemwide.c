@@ -1,5 +1,6 @@
 #include "jbserver_global.h"
 #include "jbsettings.h"
+#import "../oldabi.h"
 #include <libjailbreak/info.h>
 #include <sandbox.h>
 #include <libproc.h>

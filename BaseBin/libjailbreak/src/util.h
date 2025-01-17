@@ -8,6 +8,7 @@
 #define min(a, b) (((a) < (b)) ? (a) : (b))
 #define max(a, b) (((a) > (b)) ? (a) : (b))
 
+const struct mach_header *get_mach_header(const char *name);
 void proc_iterate(void (^itBlock)(uint64_t, bool*));
 
 uint64_t proc_self(void);

@@ -7,11 +7,17 @@
 #include <mach/mach_time.h>
 #include <pthread.h>
 #include <signal.h>
+#include <dlfcn.h>
 #include <sys/sysctl.h>
 #include <archive.h>
 #include <archive_entry.h>
 #include <math.h>
+#include <mach-o/dyld.h>
+#include <dirent.h>
 #include <IOKit/IOKitLib.h>
+#include <mach-o/dyld_images.h>
+#include <mach-o/getsect.h>
+#include <dyld_cache_format.h>
 extern char **environ;
 
 #define FAKE_PHYSPAGE_TO_MAP 0x13370000
@@ -20,6 +26,18 @@ extern char **environ;
 extern int posix_spawnattr_set_persona_np(const posix_spawnattr_t* __restrict, uid_t, uint32_t);
 extern int posix_spawnattr_set_persona_uid_np(const posix_spawnattr_t* __restrict, uid_t);
 extern int posix_spawnattr_set_persona_gid_np(const posix_spawnattr_t* __restrict, uid_t);
+
+const struct mach_header *get_mach_header(const char *name)
+{
+	const struct mach_header *mh = NULL;
+	for (int i = 0; i < _dyld_image_count(); i++) {
+		if (!strcmp(_dyld_get_image_name(i), name)) {
+			mh = _dyld_get_image_header(i);
+			break;
+		}
+	}
+	return mh;
+}
 
 void proc_iterate(void (^itBlock)(uint64_t, bool*))
 {

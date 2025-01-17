@@ -8,6 +8,7 @@
 #include <mach-o/dyld.h>
 #include <sys/param.h>
 #include <sys/mount.h>
+#include "oldabi.h"
 extern char **environ;
 
 extern int systemwide_trust_binary(const char *binaryPath, xpc_object_t preferredArchsArray);
